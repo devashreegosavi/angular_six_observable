@@ -14,12 +14,15 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   }
   ngOnInit() {
+
+    //////// below id in built observable code ( built in interval )////
     /*this.firstObsSubscription = interval(1000).subscribe(
       count => {
         console.log(count);
       }
     );
 
+    ////////// deprecated code ////////////// 
     const customIntervalObservable = Observable.create(observer => {
       let count = 0;
       setInterval(() => {
@@ -34,6 +37,9 @@ export class HomeComponent implements OnInit, OnDestroy{
       }, 1000);
     });*/
 
+    /////////////////////////////////////////
+
+    ///// below is custom observable code ////////////////
     const customIntervalObservable = new Observable<any>((observer) => {
       let count = 0;
       setInterval(() => {
@@ -46,11 +52,11 @@ export class HomeComponent implements OnInit, OnDestroy{
           observer.error(new Error('Count is greater 3!'));
         }*/
 
-        
         count++;
       }, 1000);
       }
     );
+
 
     this.firstObsSubscription = customIntervalObservable.subscribe( data => {
       console.log(data);
